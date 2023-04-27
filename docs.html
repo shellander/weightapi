@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Weight Tracker API</h1>
+
+    <h2>Add Measurement</h2>
+    <p><strong>Endpoint:</strong> <code>/add_measurement</code></p>
+    <p><strong>Method:</strong> POST</p>
+    <p><strong>Data Params:</strong></p>
+    <pre>
+{
+    "user_id": [integer],
+    "weight": [float],
+    "date": [string (YYYY-MM-DD)]
+}
+    </pre>
+    <h3>Example using Python requests:</h3>
+    <pre>
+import requests
+
+data = {
+    "user_id": 1,
+    "weight": 75.5,
+    "date": "2023-04-25"
+}
+response = requests.post("http://localhost:5000/add_measurement", json=data)
+print(response.json())
+    </pre>
+
+    <h2>Edit Measurement</h2>
+    <p><strong>Endpoint:</strong> <code>/edit_measurement/&lt;measurement_id&gt;</code></p>
+    <p><strong>Method:</strong> PUT</p>
+    <p><strong>URL Params:</strong> measurement_id=[integer]</p>
+    <p><strong>Data Params:</strong></p>
+    <pre>
+{
+    "weight": [float (optional)],
+    "date": [string (YYYY-MM-DD) (optional)]
+}
+    </pre>
+    <h3>Example using Python requests:</h3>
+    <pre>
+import requests
+
+measurement_id = 1
+data = {
+    "weight": 74.0,
+    "date": "2023-04-26"
+}
+response = requests.put(f"http://localhost:5000/edit_measurement/{measurement_id}", json=data)
+print(response.json())
+    </pre>
+
+    <h2>Get Measurements for User</h2>
+    <p><strong>Endpoint:</strong> <code>/get_measurements/&lt;user_id&gt;</code></p>
+    <p><strong>Method:</strong> GET</p>
+    <p><strong>URL Params:</strong> user_id=[integer]</p>
+    <h3>Example using Python requests:</h3>
+    <pre>
+import requests
+
+user_id = 1
+response = requests.get(f"http://localhost:5000/get_measurements/{user_id}")
+print(response.json())
+    </pre>
+        <h2>Biggest Losers</h2>
+        <p><strong>Endpoint:</strong> <code>/biggest_losers</code></p>
+        <p><strong>Method:</strong> GET</p>
+        <h3>Example using Python requests:</h3>
+        <pre>
+    import requests
+    
+    response = requests.get("http://localhost:5000/biggest_losers")
+    print(response.json())
+        </pre>
+    </body>
+    </html>
+    

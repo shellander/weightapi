@@ -1,0 +1,26 @@
+CLI
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Misc
+.idea/
+.vscode/
+*.csv
+
+test_*
+*.db
