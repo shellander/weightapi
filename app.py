@@ -252,6 +252,8 @@ def home():
     return "OK"
 
 if __name__ == '__main__':
+    import os
     print("URL MAP")
     print(app.url_map)
+    print(os.environ.get('DATABASE_URL'))
     app.run(debug=True, port=9999)
